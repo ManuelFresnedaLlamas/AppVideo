@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import umu.tds.dao.DAOException;
-import umu.tds.dao.FactoriaDAO;
+import dao.DAOException;
+import dao.FactoriaDAO;
 
 public class CatalogoUsuarios {
 	private static CatalogoUsuarios unicaInstancia;

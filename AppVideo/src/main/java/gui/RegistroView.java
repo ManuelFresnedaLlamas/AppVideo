@@ -20,7 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import um.tds.controlador.Controlador;
+import controlador.Controlador;
 
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;

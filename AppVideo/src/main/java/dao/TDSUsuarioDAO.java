@@ -9,7 +9,7 @@ import java.util.List;
 
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
-import umu.tds.dominio.Usuario;
+import dominio.Usuario;
 import beans.Entidad;
 import beans.Propiedad;
 

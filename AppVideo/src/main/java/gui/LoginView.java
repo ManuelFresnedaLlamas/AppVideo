@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import umu.tds.controlador.Controlador;
+import controlador.Controlador;
 import javax.swing.border.EmptyBorder;
 
 public class LoginView {

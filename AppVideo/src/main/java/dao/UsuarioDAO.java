@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import umu.tds.dominio.Usuario;
+import dominio.Usuario;
 
 public interface UsuarioDAO {
 	
