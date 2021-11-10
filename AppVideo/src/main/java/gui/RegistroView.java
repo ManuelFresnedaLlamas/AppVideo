@@ -25,8 +25,7 @@ import controlador.Controlador;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDayChooser;
+
 import com.toedter.calendar.JDateChooser;
 
 public class RegistroView {
@@ -60,7 +59,6 @@ public class RegistroView {
 	private JPanel panelCamposEmail;
 	private JPanel panelCamposUsuario;
 	private JPanel panelCamposFechaNacimiento;
-	private JCalendar calendar;
 	private JDateChooser dateChooser;
 
 	public RegistroView() {
