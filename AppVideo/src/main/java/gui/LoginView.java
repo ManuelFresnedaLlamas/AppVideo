@@ -41,14 +41,14 @@ public class LoginView {
 	
 	private void initialize() {
 		frmLogin = new JFrame();
-		frmLogin.setTitle("Login AppMusic");
+		frmLogin.setTitle("Login AppVideo");
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(new BorderLayout());
+		frmLogin.setResizable(false);
+		frmLogin.setBounds(100, 100, 640, 480);
 
 		crearPanelTitulo();
 		crearPanelLogin();
-
-		frmLogin.setResizable(false);
 		frmLogin.pack();
 	}
 
@@ -57,7 +57,7 @@ public class LoginView {
 		frmLogin.getContentPane().add(panel_Norte, BorderLayout.NORTH);
 		panel_Norte.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
 
-		JLabel lblTitulo = new JLabel("AppMusic");
+		JLabel lblTitulo = new JLabel("AppVideo");
 		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTitulo.setForeground(Color.DARK_GRAY);
 		panel_Norte.add(lblTitulo);
