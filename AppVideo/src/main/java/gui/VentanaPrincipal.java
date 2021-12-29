@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,12 +18,24 @@ import javax.swing.JTextPane;
 
 import javax.swing.border.EmptyBorder;
 
+import controlador.Controlador;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JList;
+import javax.swing.JTable;
+
 public class VentanaPrincipal {
 
 	private JFrame frmVentanaPrincipal;
+	private JTextField txtTituloVideo;
+	private JTextField textBuscarTitulo;
+	private JTable table;
 	
+
 	public VentanaPrincipal() {
 		initialize();
+
 	}
 
 
@@ -30,7 +44,7 @@ public class VentanaPrincipal {
 		frmVentanaPrincipal.setVisible(true);
 	}
 	
-	public void crearMenuSuperior(JPanel contentPane) {
+	public void crearMenuSuperior(final JPanel contentPane) {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaptionBorder);
@@ -56,7 +70,7 @@ public class VentanaPrincipal {
 		JTextPane txtpnHolaUser = new JTextPane();
 		txtpnHolaUser.setBackground(SystemColor.activeCaptionBorder);
 		txtpnHolaUser.setEditable(false);
-		txtpnHolaUser.setText("Hola, USUARIO"); //TODO -> sustituir USUARIO por el valor obtenido de Persistencia para usuario logeado
+		txtpnHolaUser.setText("¡Hola, " + Controlador.getUnicaInstancia().getUsuarioActual().getNombre() + "!");
 		panel.add(txtpnHolaUser);
 		
 		JSeparator separator_1 =new JSeparator();
@@ -73,37 +87,97 @@ public class VentanaPrincipal {
 		panel.add(btnNewButton);
 		
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 0, 0));
-		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
-		panel_1.setPreferredSize(new Dimension(150,35));
-		contentPane.add(panel_1);
+		JPanel panelMenuSuperior = new JPanel();
+		panelMenuSuperior.setBackground(new Color(255, 0, 0));
+		panelMenuSuperior.setLayout(new BoxLayout(panelMenuSuperior, BoxLayout.X_AXIS));
+		panelMenuSuperior.setPreferredSize(new Dimension(150,35));
+		contentPane.add(panelMenuSuperior);
 		
 		JButton btnExplorar = new JButton("Explorar");
-		panel_1.add(btnExplorar);
+		panelMenuSuperior.add(btnExplorar);
+		btnExplorar.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				crearVentanaExplorar(contentPane);
+			}
+		});
 
 		
 		JButton btnMisListas = new JButton("Mis Listas");
-		panel_1.add(btnMisListas);
+		panelMenuSuperior.add(btnMisListas);
 
 		
 		JButton btnRecientes = new JButton("Recientes");
-		panel_1.add(btnRecientes);
+		panelMenuSuperior.add(btnRecientes);
 
 		
 		JButton btnNuevaLista = new JButton("Nueva Lista");
-		panel_1.add(btnNuevaLista);
-
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(SystemColor.activeCaptionBorder);
-		contentPane.add(panel_2);
+		panelMenuSuperior.add(btnNuevaLista);
 		
 		JSeparator separator_4 = new JSeparator();
-		panel_2.add(separator_4);
-		separator_4.setPreferredSize(new Dimension(450, 250));
-	
+		separator_4.setBackground(SystemColor.activeCaptionBorder);
+		separator_4.setPreferredSize(new Dimension(0,10));
+		frmVentanaPrincipal.getContentPane().add(separator_4);
 
+		
+		
+		frmVentanaPrincipal.pack();
+	}
+	
+	public void crearVentanaExplorar(JPanel contentPane){
+
+		JPanel panelExplorar = new JPanel();
+		panelExplorar.setBackground(SystemColor.activeCaptionBorder);
+		contentPane.add(panelExplorar);
+		panelExplorar.setLayout(new BoxLayout(panelExplorar, BoxLayout.X_AXIS));
+		
+		JPanel panel_1 = new JPanel();
+		panelExplorar.add(panel_1);
+		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
+		
+		JPanel panelBuscarTitulo = new JPanel();
+		panelBuscarTitulo.setLayout(new BoxLayout(panelBuscarTitulo, BoxLayout.X_AXIS));
+		panel_1.add(panelBuscarTitulo);
+		
+		JSeparator separator_6 = new JSeparator();
+		separator_6.setPreferredSize(new Dimension(40,0));
+		panelBuscarTitulo.add(separator_6);
+		
+		JLabel lblBuscarTitulo = new JLabel("Buscar título:");
+		panelBuscarTitulo.add(lblBuscarTitulo);
+		
+		textBuscarTitulo = new JTextField();
+		panelBuscarTitulo.add(textBuscarTitulo);
+		textBuscarTitulo.setColumns(10);
+		
+		JSeparator separator = new JSeparator();
+		separator.setPreferredSize(new Dimension(40,0));
+		panelBuscarTitulo.add(separator);
+		
+		JButton botonBuscarTitulos = new JButton("Buscar");
+		panelBuscarTitulo.add(botonBuscarTitulos);
+		
+		JSeparator separator_5 = new JSeparator();
+		separator_5.setPreferredSize(new Dimension(40,0));
+		panelBuscarTitulo.add(separator_5);
+		
+		JPanel panelVideos = new JPanel();
+		panel_1.add(panelVideos);
+		
+		table = new JTable();
+		panelVideos.add(table);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(new BoxLayout(panel_2,BoxLayout.Y_AXIS));
+		panelExplorar.add(panel_2);
+		
+		
+		JLabel lblEtiquetasDisponibles = new JLabel("Etiquetas disponibles:");
+		panel_2.add(lblEtiquetasDisponibles);
+		
+		JList listaEtiquetas = new JList();
+		panel_2.add(listaEtiquetas);
+		
 		frmVentanaPrincipal.pack();
 	}
 	
