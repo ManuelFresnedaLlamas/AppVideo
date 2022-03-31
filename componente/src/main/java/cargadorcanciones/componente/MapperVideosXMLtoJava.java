@@ -6,14 +6,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-public class CargadorVideos {
+public class MapperVideosXMLtoJava {
 
 	public static Videos cargarVideos(String fichero) {
 
 		JAXBContext jc;
 		Videos canciones = null;
 		try {
-			jc = JAXBContext.newInstance("umu.tds.componente");
+			jc = JAXBContext.newInstance("cargadorcanciones.componente");
 			Unmarshaller u = jc.createUnmarshaller();
 			File file = new File(fichero);
 			canciones = (Videos) u.unmarshal(file);

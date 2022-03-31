@@ -7,23 +7,24 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EventObject;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
-
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.JTable;
+import pulsador.IEncendidoListener;
+import pulsador.Luz;
 
 public class VentanaPrincipal {
 
@@ -31,6 +32,9 @@ public class VentanaPrincipal {
 	private JTextField txtTituloVideo;
 	private JTextField textBuscarTitulo;
 	private JTable table;
+	Luz luz = new Luz();
+	 String color = "rojo";
+	 private JTextArea textArea;
 	
 
 	public VentanaPrincipal() {
@@ -194,7 +198,29 @@ public class VentanaPrincipal {
 		contentPane.setBackground(SystemColor.activeCaptionBorder);
 		
 		crearMenuSuperior(contentPane);
-
+		
+		
+		frmVentanaPrincipal.getContentPane().add(luz);
+		luz.setColor(Color.RED);
+		
+		 luz.addEncendidoListener(new IEncendidoListener() {
+			 public void enteradoCambioEncendido(EventObject e) {
+				 cambioBoton(0);
+			 }
+		 });
+		 
+		 
+		
+	}
+	
+	private void cambioBoton(int n){
+		String valor;
+		if (luz.isEncendido()) {
+			valor = "encendido";
+		}
+		else {
+			valor = "apagado";	
+		}
 	}
 }
 
