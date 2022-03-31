@@ -203,6 +203,8 @@ public class VentanaPrincipal {
 		frmVentanaPrincipal.getContentPane().add(luz);
 		luz.setColor(Color.RED);
 		
+
+		
 		 luz.addEncendidoListener(new IEncendidoListener() {
 			 public void enteradoCambioEncendido(EventObject e) {
 				 cambioBoton(0);
@@ -214,13 +216,10 @@ public class VentanaPrincipal {
 	}
 	
 	private void cambioBoton(int n){
-		String valor;
-		if (luz.isEncendido()) {
-			valor = "encendido";
-		}
-		else {
-			valor = "apagado";	
-		}
+		JButton btnNewButton_1 = new JButton("Añadir canciones XML");
+		frmVentanaPrincipal.getContentPane().add(btnNewButton_1);
+		frmVentanaPrincipal.pack();
+		frmVentanaPrincipal.repaint();
 	}
 }
 
