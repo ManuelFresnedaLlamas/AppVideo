@@ -1,10 +1,11 @@
 package controlador;
 
-import dao.UsuarioDAO;
+import cargadorcanciones.componente.Videos;
 import dao.DAOException;
 import dao.FactoriaDAO;
-import dominio.Usuario;
+import dao.UsuarioDAO;
 import dominio.CatalogoUsuarios;
+import dominio.Usuario;
 
 public final class Controlador {
 
@@ -68,6 +69,10 @@ public final class Controlador {
 
 		CatalogoUsuarios.getUnicaInstancia().removeUsuario(usuario);
 		return true;
+	}
+	
+	public Videos getVideosXML(String fichero) {
+		
 	}
 
 }

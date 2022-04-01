@@ -7,13 +7,19 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.EventObject;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -220,6 +226,42 @@ public class VentanaPrincipal {
 		frmVentanaPrincipal.getContentPane().add(btnNewButton_1);
 		frmVentanaPrincipal.pack();
 		frmVentanaPrincipal.repaint();
+		btnNewButton_1.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				 String aux="";   
+				 String texto="";
+				  try
+				  {
+				   /**llamamos el metodo que permite cargar la ventana*/
+				   JFileChooser filechoose=new JFileChooser();
+				   filechoose.showOpenDialog(frmVentanaPrincipal);
+				   /**abrimos el archivo seleccionado*/
+				   File abre=filechoose.getSelectedFile();
+
+				   /**recorremos el archivo, lo leemos para plasmarlo
+				   *en el area de texto*/
+				   if(abre!=null)
+				   {     
+				      FileReader archivos=new FileReader(abre);
+				      BufferedReader lee=new BufferedReader(archivos);
+				      while((aux=lee.readLine())!=null)
+				      {
+				         texto+= aux+ "\n";
+				      }
+				         lee.close();
+				    }    
+				   }
+				   catch(IOException ex)
+				   {
+				     JOptionPane.showMessageDialog(null,ex+"" +
+				           "\nNo se ha encontrado el archivo",
+				                 "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
+				    }
+				 // return texto;//El texto se almacena en el JTextArea
+				
+			}
+		});
 	}
 }
 
